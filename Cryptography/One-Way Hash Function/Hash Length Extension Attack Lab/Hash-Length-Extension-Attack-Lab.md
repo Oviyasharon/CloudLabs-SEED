@@ -139,9 +139,14 @@ http://www.seedlabhashlengthext.com:5000/?myname=<name>&uid=<need-to-fill>
 ```
 
 To send such a request, other than using our real names, we need to fill in the two missing arguments.
-Students need to pick a uid number from thekey.txtin theLabHomedirectory. This file contains a list
-of colon-separated uid and key values. Students can use any uid and its associated key value. For example,
-students can use uid 1001 and its key 123456.
+Students need to pick a uid number from the key.txt in the LabHome directory and that can be acheieved by running the following command.
+
+```
+cat key.txt
+```
+![image](https://github.com/CloudLabs-MOC/CloudLabs-SEED/assets/42836144/b6f16035-e377-4473-ac61-d2294c925fd1)
+
+This file contains a list of colon-separated uid and key values. Students can use any uid and its associated key value. For example, students can use uid 1001 and its key 123456.
 The second missing argument is the MAC, which can be calculated by concatenating the key with the
 contents of the requestsR(the argument part only), with a colon added in between. See the following
 example:
@@ -241,15 +246,17 @@ return 0;
 
 Students can compile and run the above program as follows:
 ```
+$ sudo apt-get install libssl-dev
 $ gcc calculate_mac.c -o calculate_mac -lcrypto
 $ ./calculate_mac
 ```
+![image](https://github.com/CloudLabs-MOC/CloudLabs-SEED/assets/42836144/67becc1a-300d-498e-bc8d-6c218d53dd1c)
 
 Task. Students should change the code in the listing above and compute the MAC for the following request
 (assume that we know the secret MAC key):
 
 ```
-[http://www.seedlablenext.com:5000/?myname=<name>&uid=<uid>](http://www.seedlablenext.com:5000/?myname=<name>&uid=<uid>)
+http://www.seedlablenext.com:5000/?myname=<name>&uid=<uid>
 &lstcmd=1<padding>&download=secret.txt
 &mac=<hash-value>
 ```
@@ -325,7 +332,7 @@ Task. Students should first generate a valid MAC for the following request (wher
 key should be obtained from theLabHome/key.txtfile):
 
 ```
-[http://www.seedlablenext.com:5000/?myname=<name>&uid=<uid>](http://www.seedlablenext.com:5000/?myname=<name>&uid=<uid>)
+http://www.seedlablenext.com:5000/?myname=<name>&uid=<uid>
 &lstcmd=1&mac=<mac>
 ```
 
@@ -333,7 +340,7 @@ Based on the<mac>value calculated above, please construct a new request that inc
 command. You are not allowed to use the secret key this time. The URL looks like below.
 
 ```
-[http://www.seedlablenext.com:5000/?myname=<name>&uid=<uid>](http://www.seedlablenext.com:5000/?myname=<name>&uid=<uid>)
+http://www.seedlablenext.com:5000/?myname=<name>&uid=<uid>
 &lstcmd=1<padding>&download=secret.txt&mac=<new-mac>
 ```
 
